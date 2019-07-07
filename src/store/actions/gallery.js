@@ -1,6 +1,10 @@
 import { loadingAction, errAction } from '$utils/store/communication';
 import { handlerError } from './error';
-import { LOAD_IMAGES, SET_OPEN_IMAGE_GALLERY } from '$store/constants/gallery';
+import {
+  LOAD_IMAGES,
+  SET_OPEN_IMAGE_GALLERY,
+  CLEAR_OPEN_IMAGE_GALLERY
+} from '$store/constants/gallery';
 const url = `https://api.unsplash.com/photos/?client_id=cf49c08b444ff4cb9e4d126b7e9f7513ba1ee58de7906e4360afc1a33d1bf4c0`;
 
 export const getImages = () => {
@@ -25,5 +29,11 @@ export const setOpenImageGallery = uri => {
   return {
     type: SET_OPEN_IMAGE_GALLERY,
     payload: { uri }
+  };
+};
+
+export const clearOpenImageGallery = () => {
+  return {
+    type: CLEAR_OPEN_IMAGE_GALLERY
   };
 };
