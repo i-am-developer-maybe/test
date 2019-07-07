@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, ActivityIndicator } from 'react-native';
+import ImageCard from '$components/ImageCard';
 import { getImages } from '$store/actions/gallery';
 import { connect } from 'react-redux';
 import { styles } from './Gallery.style';
@@ -13,7 +14,15 @@ class Gallery extends Component {
   };
 
   renderPreOrderList = ({ item }) => {
-    return <View style={styles.itemContainer} />;
+    return (
+      <View style={styles.itemContainer}>
+        <ImageCard
+          uri={item.urls.thumb}
+          author={item.user.name}
+          name={item.description}
+        />
+      </View>
+    );
   };
   keyExtractor = item => item.id;
 
@@ -21,31 +30,31 @@ class Gallery extends Component {
     const { getImages, infoLoadGallery } = this.props;
     const { isLoading, isLoad, isErrorLoad } = infoLoadGallery;
     if (!isLoading && !isLoad && !isErrorLoad) {
-      console.log('yasdessss!!!!!!!!!!!! flag-one---');
       getImages();
     }
   }
   render() {
-    console.log('@@@@@@@@@@@flag-one---');
-    const { data } = this.props;
+    const {
+      data,
+      infoLoadGallery: { isLoading, isErrorLoad }
+    } = this.props;
+
+    if (isLoading) {
+      return <ActivityIndicator size="large" color="#fca014" />;
+    }
+
+    if (isErrorLoad) {
+      return <View style={styles.errContainer}> Ошибка получения данных </View>;
+    }
+
     return (
       <View style={styles.container}>
-        {/* <FlatList
+        <FlatList
           data={data}
           renderItem={this.renderPreOrderList}
-          removeClippedSubviews={true}
           initialNumToRender={5}
           keyExtractor={this.keyExtractor}
-        /> */}
-
-        <Text>Gallery############################</Text>
-        <Text>Gallery############################</Text>
-        <Text>Gallery############################</Text>
-        <Text>Gallery############################</Text>
-        <Text>Gallery############################</Text>
-        <Text>Gallery############################</Text>
-        <Text>Gallery############################</Text>
-        <Text>Gallery############################</Text>
+        />
       </View>
     );
   }
