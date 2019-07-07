@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, FlatList, ActivityIndicator } from 'react-native';
+import { View, FlatList, ActivityIndicator } from 'react-native';
 import ImageCard from '$components/ImageCard';
 import { getImages } from '$store/actions/gallery';
 import { connect } from 'react-redux';
