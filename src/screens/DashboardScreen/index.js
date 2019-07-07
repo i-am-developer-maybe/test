@@ -4,6 +4,7 @@ import Gallery from '$components/Gallery';
 import { styles } from './DashboardScreen.style';
 
 function DashboardScreen() {
+  console.log('sddddddddddddddddddddflag-one---');
   return (
     <View style={styles.container}>
       <Gallery />
@@ -12,3 +13,4 @@ function DashboardScreen() {
 }
 
 export default DashboardScreen;
+``;

@@ -1,0 +1,2 @@
+export const LOAD_IMAGES = 'LOAD_IMAGES';
+export const SET_OPEN_IMAGE_GALLERY = 'SET_OPEN_IMAGE_GALLERY';
