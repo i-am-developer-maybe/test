@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, TouchableOpacity, Image, Text } from 'react-native';
 import { Photo } from '$navigator/AppStack/constants';
+import { setOpenImageGallery } from '$store/actions/gallery';
 import { withNavigation } from 'react-navigation';
+import { connect } from 'react-redux';
 import { styles } from './ImageCard.style';
 
 class ImageCard extends Component {
@@ -10,11 +12,14 @@ class ImageCard extends Component {
     author: PropTypes.string.isRequired,
     navigation: PropTypes.object.isRequired,
     name: PropTypes.string,
-    uri: PropTypes.string.isRequired
+    uri: PropTypes.string.isRequired,
+    regularImageUri: PropTypes.string.isRequired,
+    setOpenImageGallery: PropTypes.func.isRequired
   };
 
   handleOpenImage = () => {
-    const { navigation } = this.props;
+    const { navigation, regularImageUri, setOpenImageGallery } = this.props;
+    setOpenImageGallery(regularImageUri);
     navigation.navigate(Photo);
   };
 
@@ -35,5 +40,10 @@ class ImageCard extends Component {
     );
   }
 }
-
-export default withNavigation(ImageCard);
+const mapDispatchToProps = { setOpenImageGallery };
+export default withNavigation(
+  connect(
+    null,
+    mapDispatchToProps
+  )(ImageCard)
+);

@@ -18,12 +18,14 @@ class Gallery extends Component {
       <View style={styles.itemContainer}>
         <ImageCard
           uri={item.urls.thumb}
+          regularImageUri={item.urls.regular}
           author={item.user.name}
           name={item.description}
         />
       </View>
     );
   };
+
   keyExtractor = item => item.id;
 
   componentDidMount() {
@@ -33,6 +35,7 @@ class Gallery extends Component {
       getImages();
     }
   }
+
   render() {
     const {
       data,
