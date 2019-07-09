@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, FlatList, ActivityIndicator } from 'react-native';
+import { View, FlatList, ActivityIndicator, Tetx } from 'react-native';
 import ImageCard from '$components/ImageCard';
 import { getImages } from '$store/actions/gallery';
 import { connect } from 'react-redux';
@@ -47,7 +47,11 @@ class Gallery extends Component {
     }
 
     if (isErrorLoad) {
-      return <View style={styles.errContainer}> Ошибка получения данных </View>;
+      return (
+        <View style={styles.errContainer}>
+          <Tetx>Ошибка получения данных </Tetx>
+        </View>
+      );
     }
 
     return (
